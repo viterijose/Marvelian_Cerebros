@@ -21,7 +21,7 @@
 
 
 /* Page Intro*/
-#pageintro{padding:150px 0;}
+#pageintro{padding:10px 0 100px 0;}
 
 #pageintro li article{display:block; max-width:75%; margin:0 auto; text-align:center;}
 #pageintro li article *{margin:0;}
@@ -33,7 +33,7 @@
 
 
 /* Content Area*/
-.container{padding:80px 0;}
+.container{padding:50px 0;}
 
 /* Content */
 .container .content{}
@@ -187,8 +187,8 @@ td{border-width:0 1px;}
 /* Colours */
 body{color:#A6A6A6; background-color:#26272B;}
 a{color:#C5A059;}
-a.fancybox{color:rgb(55, 160, 29);}
-a.fancybox:hover{color:rgb(32, 98, 173);}
+a.fancybox{color:white;}
+a.fancybox:hover{color:rgb(243, 85, 90);}
 a:active, a:focus{background:transparent;}/* IE10 + 11 Bugfix - prevents grey background */
 hr, .borderedbox{border-color:#D7D7D7;}
 label span{color:#FF0000; background-color:inherit;}
@@ -240,6 +240,10 @@ input:focus, textarea:focus, *:required:focus{border-color:#C5A059;}
 
 .container .sidebar nav a{color:inherit; border-color:#D7D7D7;}
 .container .sidebar nav a:hover{color:#C5A059;}
+
+.flex-container-1{display:flex;align-items: center;}
+.flex-container-1 div{margin:10px;flex-basis: 33.333%;text-align:center;}
+.flex-container-1 div img {border-radius: 50%;}
 
 .pagination a, .pagination strong{border-color:#D7D7D7;}
 .pagination .current *{color:#FFFFFF; background-color:#C5A059;}
