@@ -695,11 +695,11 @@ function onSignIn(googleUser) {
   console.log('Name: ' + profile.getName());
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-  auth2 = gapi.auth2.init({
-    client_id: 'CLIENT_ID.apps.googleusercontent.com',
-    cookiepolicy: 'single_host_origin', /** Default value **/
-    scope: 'profile'
-  });  
+  // auth2 = gapi.auth2.init({
+  //   client_id: 'CLIENT_ID.apps.googleusercontent.com',
+  //   cookiepolicy: 'single_host_origin', /** Default value **/
+  //   scope: 'profile'
+  // });  
   var options = new gapi.auth2.SigninOptionsBuilder(
     { 'scope': 'email https://www.googleapis.com/auth/drive' });
   
