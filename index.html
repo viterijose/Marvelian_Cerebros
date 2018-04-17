@@ -22,12 +22,19 @@
       <header id="header" class="hoc clear">
         <div id="logo" class="fl_left">
           <h1>
-            <a href="index.html" style = "font-family:'Black Han Sans', sans-serif; letter-spacing: 1px;" ><span style = "color:rgb(240,27,35)">marvelian </span>Cerebros</a>
-            
+            <a href="index.html" style="font-family:'Black Han Sans', sans-serif; letter-spacing: 1px;">
+              <span style="color:rgb(240,27,35)">marvelian </span>Cerebros</a>
+
           </h1>
         </div>
-        <a id = "Google_signout" href="#" onclick="signOut();" style = "float:right">Sign out</a>
-        <div class="g-signin2" data-onsuccess="onSignIn" style = "float:right"></div>
+        <a id="Google_signout" href="#" onclick="signOut();" style="float:right">Sign out</a>
+        <div class="g-signin2" data-onsuccess="onSignIn" style="float:right"></div>
+
+        <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+        </fb:login-button>
+        <div class="fb-login-button" data-max-rows="1" data-size="large" data-button-type="continue_with" data-show-faces="false"
+          data-auto-logout-link="false" data-use-continue-as="false"></div>
+          
         <!-- <a href="#" onclick="signOut();" style = "float:right">Sign out</a> -->
       </header>
     </div>
@@ -35,9 +42,9 @@
       <div class="flexslider basicslider">
         <ul class="slides">
           <li>
-              <img src= 'assets/images/captain america.png' style = "width:20%">
+            <img src='assets/images/captain america.png' style="width:20%">
             <article>
-              
+
               <h3 class="heading">Captain America</h3>
               <footer>
                 <a class="btn" href="#">SEE THE COMIC</a>
@@ -45,7 +52,7 @@
             </article>
           </li>
           <li>
-              <img src= 'assets/images/hulk.png' style = "width:20%">
+            <img src='assets/images/hulk.png' style="width:20%">
             <article>
               <h3 class="heading">HULK</h3>
               <footer>
@@ -54,7 +61,7 @@
             </article>
           </li>
           <li>
-              <img src= 'assets/images/spiderman.png' style = "width:20%">
+            <img src='assets/images/spiderman.png' style="width:20%">
             <article>
               <h3 class="heading">SPIDERMAN</h3>
               <footer>
@@ -114,7 +121,7 @@
     <hr>
     <div class="flex-container-1">
       <div class="p-2">
-        <p id ="Authors">Don Blanc</p>
+        <p id="Authors">Don Blanc</p>
         <img src="assets/images/Don.jpg" class="img-circle img-thumbnail" alt="Responsive image" />
         <p>Back-end developer</p>
 
@@ -125,7 +132,7 @@
         </div>
       </div>
       <div class="p-2">
-        <p id ="Authors">Iman Eltayeb</p>
+        <p id="Authors">Iman Eltayeb</p>
         <img src="assets/images/Iman.jpg" class="img-fluid img-thumbnail" alt="Responsive image" />
         <p>Front-end developer</p>
 
@@ -136,7 +143,7 @@
         </div>
       </div>
       <div class="p-2">
-        <p id ="Authors">Jose Viteri</p>
+        <p id="Authors">Jose Viteri</p>
         <img src="assets/images/Jose.jpg" class="img-fluid img-thumbnail" alt="Responsive image" />
         <p>Back-end developer</p>
 
@@ -154,8 +161,38 @@
 
   </footer>
 
+  <script>
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: '160283998001672',
+        cookie: true,
+        xfbml: true,
+        version: '{latest-api-version}'
+      });
 
+      FB.AppEvents.logPageView();
 
+    };
+
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    FB.getLoginStatus(function (response) {
+      statusChangeCallback(response);
+      console.log(response.status);
+    });
+    function checkLoginState() {
+      FB.getLoginStatus(function (response) {
+        statusChangeCallback(response);
+      });
+    }
+
+  </script>
   <!-- JAVASCRIPTS -->
   <script src="https://apis.google.com/js/platform.js" async defer></script>
 
