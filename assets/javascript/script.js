@@ -695,24 +695,26 @@ function onSignIn(googleUser) {
   console.log('Name: ' + profile.getName());
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+  auth2 = gapi.auth2.init({
+    client_id: 'CLIENT_ID.apps.googleusercontent.com',
+    cookiepolicy: 'single_host_origin', /** Default value **/
+    scope: 'profile'
+  });  
+  var options = new gapi.auth2.SigninOptionsBuilder(
+    { 'scope': 'email https://www.googleapis.com/auth/drive' });
+  
+  googleUser = auth2.currentUser.get();
+  googleUser.grant(options).then(
+    function (success) {
+      console.log(JSON.stringify({ message: "success", value: success }));
+    },
+    function (fail) {
+      alert(JSON.stringify({ message: "fail", value: fail }));
+    });
 }
-auth2 = gapi.auth2.init({
-  client_id: 'CLIENT_ID.apps.googleusercontent.com',
-  cookiepolicy: 'single_host_origin', /** Default value **/
-  scope: 'profile'
-});                /** Base scope **/
+              /** Base scope **/
 
-var options = new gapi.auth2.SigninOptionsBuilder(
-  { 'scope': 'email https://www.googleapis.com/auth/drive' });
 
-googleUser = auth2.currentUser.get();
-googleUser.grant(options).then(
-  function (success) {
-    console.log(JSON.stringify({ message: "success", value: success }));
-  },
-  function (fail) {
-    alert(JSON.stringify({ message: "fail", value: fail }));
-  });
 function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
