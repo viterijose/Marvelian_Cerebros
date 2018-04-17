@@ -653,6 +653,42 @@ listElm.addEventListener('scroll', function () {
   }
 });
 
+
+
+var auth2;
+
+/**
+ * Initializes the Sign-In client.
+ */
+var initClient = function () {
+  gapi.load('auth2', function () {
+    /**
+     * Retrieve the singleton for the GoogleAuth library and set up the
+     * client.
+     */
+    auth2 = gapi.auth2.init({
+      client_id: '735632269136-0nnk57dsj0pfu9q8tbd5a2gqva7425sb.apps.googleusercontent.com'
+    });
+
+    // Attach the click handler to the sign-in button
+    auth2.attachClickHandler('signin-button', {}, onSuccess, onFailure);
+  });
+};
+
+/**
+ * Handle successful sign-ins.
+ */
+var onSuccess = function (user) {
+  console.log('Signed in as ' + user.getBasicProfile().getName());
+};
+
+/**
+ * Handle sign-in failures.
+ */
+var onFailure = function (error) {
+  console.log(error);
+};
+
 function onSignIn(googleUser) {
   var profile = googleUser.getBasicProfile();
   console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -660,6 +696,23 @@ function onSignIn(googleUser) {
   console.log('Image URL: ' + profile.getImageUrl());
   console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
 }
+auth2 = gapi.auth2.init({
+  client_id: 'CLIENT_ID.apps.googleusercontent.com',
+  cookiepolicy: 'single_host_origin', /** Default value **/
+  scope: 'profile'
+});                /** Base scope **/
+
+var options = new gapi.auth2.SigninOptionsBuilder(
+  { 'scope': 'email https://www.googleapis.com/auth/drive' });
+
+googleUser = auth2.currentUser.get();
+googleUser.grant(options).then(
+  function (success) {
+    console.log(JSON.stringify({ message: "success", value: success }));
+  },
+  function (fail) {
+    alert(JSON.stringify({ message: "fail", value: fail }));
+  });
 function signOut() {
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signOut().then(function () {
